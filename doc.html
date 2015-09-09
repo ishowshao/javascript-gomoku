@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>JavaScript Gomoku 五子棋 v1.1</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/five.css"/>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a href="#" class="brand">JavaScript Gomoku 五子棋</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class=""><a href="index.html">Home</a></li>
+                    <li class="active"><a href="doc.html">代码PK文档</a></li>
+                    <li><a href="http://code.google.com/p/javascript-gomoku/">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <h1>示例代码</h1>
+        <p>下面是一段示例AI代码，功能是随机走棋：</p>
+        <pre><code>
+    var matrix = chessboard.getMatrix();
+    var getRandomCoordinate = function () {
+        var i = Math.floor(Math.random() * 15);
+        var j = Math.floor(Math.random() * 15);
+        return [i, j];
+    };
+    var coordinate = getRandomCoordinate();
+    while (true) {
+        if (matrix.getValueByCoordinate(coordinate) == 0) {
+            break;
+        } else {
+            coordinate = getRandomCoordinate();
+        }
+    }
+    chessboard.go(coordinate, this.color);
+        </code></pre>
+        <p>挑战者的AI代码执行环境，会得到一个<code>chessboard</code>变量，<code>chessboard</code>变量是<code>Chessboard</code>类型，它有两个最基础的方法<code>getMatrix();</code>和<code>go(coordinate, color);</code></p>
+        <p><code>getMatrix();</code>用来获得当前棋盘上棋子数据，它的返回值是<code>Matrix</code>类型，是对二维数组的封装</p>
+        <p><code>go(coordinate, color);</code>用来往棋盘上摆放一个棋子，使用方法：<code>go([0, 0], 'black');</code>，这样调用意思是在棋盘的(0,0)点(左上角)，摆放一枚黑子，实际调用时，可以用环境初始化好的<code>this.color</code>替代<code>'black'</code></p>
+        <p>重要说明：在系统中黑棋用数字3存储，白棋用数字1存储，空白用数字0存储。挑战者的代码在计算完毕一定要调用<code>chessboard.go(coordinate, color);</code>，如果不愿意使用<code>Matrix</code>类提供的方法，可以调用<code>matrix.toArray();</code>将矩阵转换成纯数据之后利用自己的方法取值和计算。</p>
+        <div>
+            <h1>API文档</h1>
+            <div>
+                <h3>Class Chessboard</h3>
+                <p>棋盘类，对棋盘的基础操作和获得棋盘状态</p>
+                <h4>公有方法</h4>
+                <p>
+                    <code>go(Array coordinate, String color) : void</code> 向棋盘上摆放棋子
+                </p>
+                <p>
+                    <code>getMatrix() : Matrix</code> 获得棋盘当前状态数据
+                </p>
+                <p>
+                    <code>getStep() : Number</code> 获取当前是第n步
+                </p>
+            </div>
+            <div>
+                <h3>Class Matrix</h3>
+                <p>矩阵类，对二维数组的封装，用来存储棋盘状态</p>
+                <h4>公有方法</h4>
+                <p>
+                    <code>getCoordinatesByValue(Number needle) : Array</code> 获得此矩阵内所有值为needle的坐标，返回值是二维数组，例如[[0, 0], [2, 3]]
+                </p>
+                <p>
+                    <code>getValueByCoordinate(Array coordinate) : Number</code> 获得给定坐标的值，例如getValueByCoordinate([1, 2]);
+                </p>
+                <p>
+                    <code>copy(interchange) : Matrix</code> 复制一份当前的矩阵，如果将参数interchange设置为true，可将复制出的矩阵中1转成3，3转成1，0保持不变
+                </p>
+                <p>
+                    <code>toArray() : Number</code> 将矩阵传换成数组
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

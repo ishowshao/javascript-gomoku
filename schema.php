@@ -10,81 +10,66 @@ $source = array(
     //win
     array(
         'data' => array(1, 1, 1, 1, 1),
-        'score' => 100001,
+        'score' => 1000001,
         'direction' => 4,
     ),
     //must win
     array(
         'data' => array(0, 1, 1, 1, 1, 0),
-        'score' => 10001,
-        'direction' => 4,
-    ),
-    //must care one step
-    array(
-        'data' => array(0, 1, 1, 1, 0, 1, 0),
-        'score' => 3001,
-        'direction' => 8,
-    ),
-    array(
-        'data' => array(0, 1, 1, 0, 1, 1, 0),
-        'score' => 3001,
-        'direction' => 4,
-    ),
-    array(
-        'data' => array(3, 1, 1, 1, 1, 0),
-        'score' => 3200,
-        'direction' => 8,
-    ),
-    array(
-        'data' => array(3, 1, 1, 1, 0, 1, 0),
-        'score' => 3001,
-        'direction' => 8,
-    ),
-    array(
-        'data' => array(3, 1, 1, 1, 0, 1, 3),
-        'score' => 3001,
-        'direction' => 8,
-    ),
-    array(
-        'data' => array(3, 1, 1, 0, 1, 1, 3),
-        'score' => 3001,
+        'score' => 100001,
         'direction' => 4,
     ),
     //must care 2 step
     array(
         'data' => array(0, 1, 1, 1, 0),
-        'score' => 1050,
+        'score' => 11111,
         'direction' => 4,
     ),
     array(
         'data' => array(0, 1, 1, 0, 1, 0),
+        'score' => 10001,
+        'direction' => 8,
+    ),
+    //must care one step
+    array(
+        'data' => array(3, 1, 1, 1, 1, 0),
+        'score' => 1003,
+        'direction' => 8,
+    ),
+    array(
+        'data' => array(3, 1, 1, 1, 0, 1),
+        'score' => 1002,
+        'direction' => 8,
+    ),
+    array(
+        'data' => array(3, 1, 1, 0, 1, 1),
         'score' => 1001,
-        'direction' => 8,
-    ),
-    //
-    array(
-        'data' => array(3, 1, 1, 1, 0),
-        'score' => 100,
-        'direction' => 8,
-    ),
-    array(
-        'data' => array(3, 1, 1, 0, 1, 0),
-        'score' => 50,
-        'direction' => 8,
+        'direction' => 4,
     ),
     array(
         'data' => array(0, 1, 1, 0),
-        'score' => 10,
+        'score' => 102,
         'direction' => 4,
     ),
     array(
         'data' => array(0, 1, 0, 1, 0),
-        'score' => 5,
+        'score' => 101,
         'direction' => 4,
+    ),
+    //
+    array(
+        'data' => array(3, 1, 1, 1, 0),
+        'score' => 10,
+        'direction' => 8,
+    ),
+    array(
+        'data' => array(3, 1, 1, 0, 1, 0),
+        'score' => 10,
+        'direction' => 8,
     ),
     array(
         'data' => array(3, 1, 1, 0),
-        'score' => 2,
+        'score' => 1,
         'direction' => 8,
     ),
 );

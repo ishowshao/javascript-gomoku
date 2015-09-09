@@ -2,32 +2,71 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="five.css"/>
+    <title>JavaScript Gomoku 五子棋 v1.1</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/five.css"/>
 
-    <script src="five.js"></script>
-    <script src="schemas.js"></script>
-    <script src="Matrix.js"></script>
+    <script src="class/Gomoku.js"></script>
+    <script src="class/Schema.js"></script>
+    <script src="class/Matrix.js"></script>
 
-    <script src="Player.js"></script>
-    <script src="Ai.js"></script>
-    <script src="Person.js"></script>
+    <script src="class/Player.js"></script>
+    <script src="class/Ai.js"></script>
+    <script src="class/Person.js"></script>
 
-    <script src="Chessboard.js"></script>
-    <script src="jquery-1.8.1.min.js"></script>
-    <script src="index.js"></script>
+    <script src="class/Chessboard.js"></script>
+    <script src="js/jquery-1.8.1.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="data/logs.js"></script>
 </head>
 <body>
-<div id="container">
-    <div id="operation">
-        <div>
-            <label>人执黑
-                <input type="radio" name="black-or-white" value="black" checked>
-            </label>
-            <label>人执白
-                <input type="radio" name="black-or-white" value="white">
-            </label>
-            <button id="play">开始</button>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a href="#" class="brand">JavaScript Gomoku 五子棋</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li class=""><a href="doc.html">代码PK文档</a></li>
+                    <li><a href="http://code.google.com/p/javascript-gomoku/">About</a></li>
+                </ul>
+            </div>
         </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span4 alert alert-info">
+            <form class="form">
+                <div style="margin-bottom: 5px;">
+                    <label class="radio inline">
+                        <input type="radio" name="black-or-white" value="black" checked> 挑战者执黑
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="black-or-white" value="white"> 挑战者执白
+                    </label>
+                </div>
+                <div id="operation" class="form-inline">
+                    <label for="mode">
+                        <select id="mode">
+                            <option value="1">人机对战</option>
+                            <option value="2">代码PK</option>
+                        </select>
+                    </label>
+                    <button id="play" class="btn">开始</button>
+                    <button id="replay" class="btn hide">重新开始</button>
+                </div>
+                <label for="code" class="hide"><textarea id="code" class="span12" rows="10"></textarea></label>
+            </form>
+            <div id="log">
+            </div>
+        </div>
+        <div id="chessboard-ct" class="span8"></div>
     </div>
 </div>
 </body>
