@@ -9,7 +9,7 @@
  * @param {Number} size
  * @constructor
  */
-var Chessboard = function (size) {
+var Chessboard = function(size) {
     /**
      * @type {Number}
      */
@@ -44,22 +44,21 @@ var Chessboard = function (size) {
  * 等待人点击
  * 点击之后马上注销点击事件，以防止多次点击
  */
-Chessboard.prototype.wait = function () {
+Chessboard.prototype.wait = function() {
     this.waiting = true;
 };
 
 /**
  * 什么都不做
  */
-Chessboard.prototype.doNothing = function () {
-};
+Chessboard.prototype.doNothing = function() {};
 
 /**
  * 记录走棋日志
  * @param {Array} coordinate
  * @param {String} color
  */
-Chessboard.prototype.doLog = function (coordinate, color) {
+Chessboard.prototype.doLog = function(coordinate, color) {
     //记录日志
     this.log.push({
         coordinate: coordinate,
@@ -68,32 +67,12 @@ Chessboard.prototype.doLog = function (coordinate, color) {
     jQuery('#log').append('<div><span class="log-coordinate badge badge-info">(' + coordinate[0] + ',' + coordinate[1] + ')</span> <span>' + color + '</span></div>');
 };
 
-/**
- * 下一步棋，记录日志，并转交先手
- * @param {Array} coordinate
- * @param {String} color
- */
-Chessboard.prototype.go = function (coordinate, color) {
-    var that = this;
-    var value = (color == 'black' ? 3 : 1);
-    if (this.matrix.getValueByCoordinate(coordinate) === 0) {
-        this.matrix.setValueByCoordinate(coordinate, value);
-        this.el.find('tr:eq(' + coordinate[0] + ')').find('td:eq(' + coordinate[1] + ')').append('<div class="pieces ' + color + '"></div>');
-        this.doLog(coordinate, color);
-        setTimeout(function () {
-            that.changeTurn();
-        }, 50);
-    } else {
-        alert(coordinate + ' 这个点已经有棋子了');
-        this.wait();
-    }
-};
 
 /**
  * 胜利告知
  * @param {String} color
  */
-Chessboard.prototype.showWinner = function (color) {
+Chessboard.prototype.showWinner = function(color) {
     alert(color + ' win');
     this.playing = false;
     if (typeof JSON.stringify !== 'undefined') {
@@ -103,45 +82,16 @@ Chessboard.prototype.showWinner = function (color) {
             data: {
                 log: JSON.stringify(this.log)
             },
-            success: function () {
-            }
+            success: function() {}
         });
     }
 };
 
-/**
- * 绘制棋盘
- * @param renderTo
- */
-Chessboard.prototype.render = function (renderTo) {
-    var size = this.size;
-    var html = [];
-    html.push('<table class="chessboard">');
-    for (var i = 0; i < size; i++) {
-        html.push('<tr class="row">');
-        for (var j = 0; j < size; j++) {
-            html.push('<td class="cell"' + 'data-i="' + i + '" data-j="' + j + '"></td>');
-        }
-        html.push('</tr>');
-    }
-    html.push('</table>');
-    this.el = jQuery(html.join(''));
-    jQuery(renderTo).append(this.el);
-    var that = this;
-    this.el.delegate('td', 'click', function () {
-        if (that.waiting && that.isPlaying()) {
-            that.waiting = false;
-            var i = jQuery(this).data('i');
-            var j = jQuery(this).data('j');
-            that.go([i, j], that.turn);
-        }
-    });
-};
 
 /**
  * 启动对战
  */
-Chessboard.prototype.start = function () {
+Chessboard.prototype.start = function() {
     this.el.find('.pieces').remove();
     jQuery('#log').empty();
     this.playing = true;
@@ -155,7 +105,7 @@ Chessboard.prototype.start = function () {
  * 获得当前是否处于下棋进行中
  * @return {Boolean}
  */
-Chessboard.prototype.isPlaying = function () {
+Chessboard.prototype.isPlaying = function() {
     return this.playing;
 };
 
@@ -163,7 +113,7 @@ Chessboard.prototype.isPlaying = function () {
  * 设置当前轮到谁，并让轮到的player下棋
  * @param {String} turn
  */
-Chessboard.prototype.setTurn = function (turn) {
+Chessboard.prototype.setTurn = function(turn) {
     this.turn = turn;
     if (turn == 'black') {
         this.blackPlayer.play(this);
@@ -175,7 +125,7 @@ Chessboard.prototype.setTurn = function (turn) {
 /**
  * 切换先手
  */
-Chessboard.prototype.changeTurn = function () {
+Chessboard.prototype.changeTurn = function() {
     if (this.playing) {
         this.turn = (this.turn == 'black' ? 'white' : 'black');
         this.setTurn(this.turn);
@@ -186,14 +136,14 @@ Chessboard.prototype.changeTurn = function () {
  * 获得当前步数
  * @return {Number}
  */
-Chessboard.prototype.getStep = function () {
+Chessboard.prototype.getStep = function() {
     return this.log.length;
 };
 
 /**
  * @param {Player} player
  */
-Chessboard.prototype.setPlayer = function (player) {
+Chessboard.prototype.setPlayer = function(player) {
     if (player.getColor() == 'black') {
         this.blackPlayer = player;
     } else if (player.getColor() == 'white') {
@@ -205,10 +155,10 @@ Chessboard.prototype.setPlayer = function (player) {
  * 获得棋盘关联的矩阵
  * @return {Matrix}
  */
-Chessboard.prototype.getMatrix = function () {
+Chessboard.prototype.getMatrix = function() {
     return this.matrix;
 };
 
-Chessboard.prototype.getDomByCoordinate = function (coordinate) {
+Chessboard.prototype.getDomByCoordinate = function(coordinate) {
     return this.el.find('tr:eq(' + coordinate[0] + ')').find('td:eq(' + coordinate[1] + ')');
 };
