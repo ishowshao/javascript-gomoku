@@ -2,7 +2,7 @@
 
 forked from [ishowshao/javascript-gomoku](https://github.com/ishowshao/javascript-gomoku)
 
-基于ishawshao的项目，利用[kineticjs](http://www.kineticjs.com/)实现canvas棋盘的五子棋游戏，并支持随时的DOM/Canvas棋盘模式切换。
+基于ishowshao的项目（原项目实现的是DOM棋盘），利用[kineticjs](http://www.kineticjs.com/)实现canvas棋盘的五子棋游戏，并支持随时的DOM/Canvas棋盘模式切换。
 
 修改幅度：
 
