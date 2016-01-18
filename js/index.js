@@ -31,11 +31,18 @@ if (!Array.prototype.indexOf) {
 }
 
 jQuery(function () {
+    var checkChessboardMode = function(){
+        var mode = jQuery("input[name=\"dom-or-canvas\"]:checked").val();
+        Chessboard._canvas = "canvas" === mode;
+    };
 
-    jQuery('#play').click(function (e) {
+    var resetPlay = function (e) {
         e.preventDefault();
         jQuery(this).hide();
         jQuery('#replay').show();
+        jQuery("#chessboard-ct").empty();
+
+        checkChessboardMode();
 
         if (jQuery('#mode').val() == 1) {
             window.gomoku = new Gomoku();
@@ -45,12 +52,11 @@ jQuery(function () {
             window.gomoku = new Gomoku(Gomoku.getChallenger(code));
             gomoku.play(jQuery('input[name="black-or-white"]:checked').val());
         }
-    });
+    };
 
-    jQuery('#replay').click(function (e) {
-        e.preventDefault();
-        gomoku.replay(jQuery('input[name="black-or-white"]:checked').val());
-    });
+    jQuery('#play').click(resetPlay);
+
+    jQuery('#replay').click(resetPlay);
 
     jQuery('#mode').change(function () {
         if (jQuery(this).val() == 1) {
